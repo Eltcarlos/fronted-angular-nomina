@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL: 'http://localhost:7000',
+  API_URL: 'https://backend-nomina.onrender.com',
 };
