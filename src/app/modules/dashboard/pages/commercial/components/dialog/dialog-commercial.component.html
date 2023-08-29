@@ -1,0 +1,271 @@
+<div
+  class="p-6 bg-gray-100 relative rounded shadow mr-52 w-1/2 h-full sm:mx-96 lg:mx-96 2xl:mx-96"
+  style="z-index: 1000"
+>
+  <button (click)="exit()">
+    <fa-icon [icon]="faX" class="text-red-500"></fa-icon>
+  </button>
+  <h1 class="text-center font-bold py-2 text-gray-700">
+    {{ commercialData.created ? "Crear un Asesor" : "Editar una Asesor" }}
+  </h1>
+  <form
+    [formGroup]="form"
+    novalidate
+    class="space-y-4"
+    (ngSubmit)="commercialData.created ? create() : update()"
+  >
+    <div class="flex grid-cols-2">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Nombre</label>
+        <div class="relative">
+          <input
+            formControlName="firstName"
+            placeholder="Enter firstName"
+            type="text"
+            name="firstName"
+            class="w-full rounded bg-gray-100 border-gray-300 border-2"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['firstName'].touched &&
+            form.controls['firstName'].invalid
+          "
+        >
+          <p
+            *ngIf="form.controls['firstName'].hasError('required')"
+            class="font-medium text-red-500 text-xs mt-1 ml-1"
+          >
+            Nombre es requerido
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Apellido</label>
+        <div class="relative">
+          <input
+            formControlName="lastName"
+            placeholder="Enter lastName"
+            type="text"
+            name="lastName"
+            class="w-full rounded bg-gray-100 border-gray-300 border-2"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['lastName'].touched &&
+            form.controls['lastName'].invalid
+          "
+        >
+          <p
+            *ngIf="form.controls['lastName'].hasError('required')"
+            class="font-medium text-red-500 text-xs mt-1 ml-1"
+          >
+            Apellido es requerido
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Email</label>
+      <div class="relative">
+        <input
+          formControlName="email"
+          placeholder="Enter Email"
+          type="text"
+          name="email"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        />
+      </div>
+      <div
+        *ngIf="form.controls['email'].touched && form.controls['email'].invalid"
+      >
+        <p
+          *ngIf="form.controls['email'].hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          Correo es requerido
+        </p>
+      </div>
+    </div>
+
+    <div class="flex grid-cols-2">
+      <div *ngIf="commercialData.created">
+        <label class="block text-sm font-medium text-gray-700">Documento</label>
+        <div class="relative">
+          <input
+            formControlName="document"
+            placeholder="Enter document"
+            type="number"
+            name="document"
+            class="w-full rounded bg-gray-100 border-gray-300 border-2"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['document'].touched &&
+            form.controls['document'].invalid
+          "
+        >
+          <p
+            *ngIf="form.controls['document'].hasError('required')"
+            class="font-medium text-red-500 text-xs mt-1 ml-1"
+          >
+            Docuemento es requerido
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Celular</label>
+        <div class="relative">
+          <input
+            formControlName="phone"
+            placeholder="Enter phone"
+            type="number"
+            name="phone"
+            class="w-full rounded bg-gray-100 border-gray-300 border-2"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['phone'].touched && form.controls['phone'].invalid
+          "
+        >
+          <p
+            *ngIf="form.controls['phone'].hasError('required')"
+            class="font-medium text-red-500 text-xs mt-1 ml-1"
+          >
+            Celular es requerido
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700"
+        >Numero Cuenta</label
+      >
+      <div class="relative">
+        <input
+          formControlName="numberAccount"
+          placeholder="Enter numberAccount"
+          type="number"
+          name="numberAccount"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.controls['numberAccount'].touched &&
+          form.controls['numberAccount'].invalid
+        "
+      >
+        <p
+          *ngIf="form.controls['numberAccount'].hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          Numero de Cuenta es requerido
+        </p>
+      </div>
+    </div>
+
+    <div class="flex grid-cols-2">
+      <div>
+        <label class="block text-sm font-medium text-gray-700" for="experience"
+          >Tipo de Categoria</label
+        >
+        <select
+          formControlName="category"
+          id="category"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        >
+          <option value="" disabled selected>Select an category</option>
+          <option value="Programador">Programador</option>
+          <option value="Ingeniero">Ingeniero</option>
+          <option value="Administrador">Administrador</option>
+        </select>
+        <div
+          *ngIf="
+            form.controls['category'].touched &&
+            form.controls['category'].invalid
+          "
+        >
+          <p
+            *ngIf="form.controls['category'].hasError('required')"
+            class="font-medium text-red-500 text-xs mt-1 ml-1"
+          >
+            Category is required
+          </p>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700" for="experience"
+          >Tipo de Experiencia</label
+        >
+        <select
+          formControlName="experience"
+          id="experience"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        >
+          <option value="" disabled selected>Select an experience</option>
+          <option value="Junior">Junior</option>
+          <option value="Senior">Senior</option>
+          <option value="Master">Master</option>
+        </select>
+        <div
+          *ngIf="
+            form.controls['experience'].touched &&
+            form.controls['experience'].invalid
+          "
+        >
+          <p
+            *ngIf="form.controls['experience'].hasError('required')"
+            class="font-medium text-red-500 text-xs mt-1 ml-1"
+          >
+            Experience is required
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700"
+        >Ventas del Mes</label
+      >
+      <div class="relative">
+        <input
+          formControlName="monthlySales"
+          placeholder="Enter monthlySales"
+          type="number"
+          name="monthlySales"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.controls['monthlySales'].touched &&
+          form.controls['monthlySales'].invalid
+        "
+      >
+        <p
+          *ngIf="form.controls['monthlySales'].hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          MonthlySales is required
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <app-btn
+        typeBtn="submit"
+        color="success"
+        [loading]="status === 'loading'"
+        >{{
+          commercialData.created ? "Crear Asesor" : "Actulizar Asesor"
+        }}</app-btn
+      >
+    </div>
+  </form>
+</div>

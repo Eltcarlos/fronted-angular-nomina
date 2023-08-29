@@ -1,0 +1,56 @@
+<div
+  class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+>
+  <a href="#">
+    <h5
+      class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white"
+    >
+      {{ commission._id }}
+    </h5>
+  </a>
+  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+    Lista de comisiones:
+  </p>
+  <p
+    class="mb-3 font-normal text-gray-500 dark:text-gray-400 rounded-lg bg-green-100"
+  >
+    Comisión 1 ---> {{ commission.commissionTier1 }}
+  </p>
+  <p
+    class="mb-3 font-normal text-gray-500 dark:text-gray-400 rounded-lg bg-green-300"
+  >
+    Comisión 2 ---> {{ commission.commissionTier2 }}
+  </p>
+  <p
+    class="mb-3 font-normal text-gray-500 dark:text-gray-400 rounded-lg bg-green-500"
+  >
+    Comisión 3 ---> {{ commission.commissionTier3 }}
+  </p>
+  <a
+    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+  >
+    <fa-icon [icon]="faMoneyBill1"></fa-icon>
+    <span class="flex-1 ml-3 whitespace-nowrap">{{
+      formatCurrency(commission.target)
+    }}</span>
+    <span
+      class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium rounded-full {{
+        commission.experienceName === 'Junior'
+          ? 'text-blue-600 bg-blue-200'
+          : commission.experienceName === 'Senior'
+          ? 'text-yellow-500 bg-yellow-200'
+          : 'text-red-700 bg-red-300'
+      }}"
+    >
+      {{ commission.experienceName }}
+    </span>
+  </a>
+  <div class="flex space-x-3">
+    <button (click)="openDialog(commission)">
+      <fa-icon class="" [icon]="faPenAlt"></fa-icon>
+    </button>
+    <button (click)="removeCommission(commission._id)">
+      <fa-icon class="text-red-700" [icon]="faTrashAlt"></fa-icon>
+    </button>
+  </div>
+</div>

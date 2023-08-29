@@ -1,0 +1,24 @@
+<div class="p-4 sm:ml-64">
+  <div class="p-4 mt-14">
+    <h1
+      class="mb-3 font-normal text-gray-500 dark:text-gray-400 bg-gray-200 rounded-lg text-center"
+    >
+      Lista de Comisiones
+    </h1>
+    <div class="flex grid-cols-3 gap-4 justify-center">
+      <div>
+        <ng-container *ngFor="let singleCommission of commission">
+          <app-card [commission]="singleCommission"></app-card>
+        </ng-container>
+        <div class="py-3">
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full"
+            (click)="openDialog()"
+          >
+            Crear Comision
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

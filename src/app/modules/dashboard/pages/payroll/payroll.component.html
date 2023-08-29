@@ -1,0 +1,47 @@
+<div class="p-4 sm:ml-64">
+  <div class="p-4 mt-14">
+    <h1
+      class="mb-3 font-normal text-gray-500 dark:text-gray-400 bg-gray-200 rounded-lg text-center"
+    >
+      Lista de Nominas
+    </h1>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <!-- Columnas de la tabla -->
+      <ng-container matColumnDef="NominaID">
+        <th mat-header-cell *matHeaderCellDef>Nomina ID</th>
+        <td mat-cell *matCellDef="let payroll">{{ payroll._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="AsesorID">
+        <th mat-header-cell *matHeaderCellDef>Asesor ID</th>
+        <td mat-cell *matCellDef="let payroll">
+          {{ payroll.commercialAdvisor }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="CreatedAt">
+        <th mat-header-cell *matHeaderCellDef>Created At</th>
+        <td mat-cell *matCellDef="let payroll">{{ payroll.createdAt }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="PDF">
+        <th mat-header-cell *matHeaderCellDef>PDF</th>
+        <td mat-cell *matCellDef="let payroll">
+          <a [href]="payroll.PDF" target="_blank">
+            <fa-icon [icon]="faFilePdf" class="text-red-500"></fa-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Asignar columnas a la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
